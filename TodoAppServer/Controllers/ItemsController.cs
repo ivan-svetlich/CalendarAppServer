@@ -31,9 +31,45 @@ namespace TodoAppServer.Controllers
             this.userManager = userManager;
         }
 
+        //[HttpGet]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //public async Task<ActionResult<List<TodoItemResponse>>> GetAll()
+        //{
+        //    try
+        //    {
+        //        AppUser user = await AuthenticateUser();
+
+        //        if (user != null)
+        //        {
+        //            var todosQuery = await todoAppContext.TodoItems.Where(todo => todo.UserId == user.Id)
+        //                                           .Select(todo => ToResponse(todo)).ToListAsync();
+
+        //            try
+        //            {
+        //                return todosQuery;
+        //            }
+        //            catch
+        //            {
+        //                return Ok("puto");
+        //            }
+
+
+        //        }
+        //        else
+        //        {
+        //            return Unauthorized();
+        //        }
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        return Ok(e);
+        //    }
+        //}
+
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult<List<TodoItemResponse>>> GetAll()
+        public async Task<ActionResult<List<TodoItemResponse>>> GetByInterval(
+            [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
             try
             {
@@ -41,16 +77,31 @@ namespace TodoAppServer.Controllers
 
                 if (user != null)
                 {
-                    var todosQuery = await todoAppContext.TodoItems.Where(todo => todo.UserId == user.Id)
-                                                   .Select(todo => ToResponse(todo)).ToListAsync();
+                    var allItems = await todoAppContext.TodoItems.Where(
+                                todo => todo.UserId == user.Id &&
+                                    todo.DueDate.Date >= startDate.Date && todo.DueDate.Date <= endDate.Date)
+                                .Select(todo => ToResponse(todo)).ToListAsync();
 
+                    List<IntervalResponse> response = new List<IntervalResponse>();
+                    DateTime date = startDate.Date;
+                    while(date <= endDate.Date)
+                    {
+                        var todos = allItems.Where(todo => todo.DueDate.Date == date).ToList();
+
+                        response.Add(new IntervalResponse
+                        {
+                            DueDate = date,
+                            TodoItems = todos
+                        });
+                        date = date.AddDays(1);
+                    }                  
                     try
                     {
-                        return todosQuery;
+                        return Ok(response);
                     }
                     catch
                     {
-                        return Ok("puto");
+                        return StatusCode(StatusCodes.Status500InternalServerError);
                     }
 
 
@@ -60,9 +111,9 @@ namespace TodoAppServer.Controllers
                     return Unauthorized();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return Ok(e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 
@@ -117,6 +168,7 @@ namespace TodoAppServer.Controllers
                             Description = addItemRequest.Description,
                             Completed = false,
                             Removed = false,
+                            DueDate = addItemRequest.DueDate,
                             CreatedOn = DateTime.UtcNow,
                             UpdatedOn = DateTime.UtcNow
                         };
@@ -247,6 +299,7 @@ namespace TodoAppServer.Controllers
                 Description = todoItem.Description,
                 Completed = todoItem.Completed,
                 Removed = todoItem.Removed,
+                DueDate = todoItem.DueDate,
                 CreatedOn = todoItem.CreatedOn,
                 UpdatedOn = todoItem.UpdatedOn
             };

@@ -9,6 +9,7 @@ namespace TodoAppServer.DTOs.Responses
         public string Description { get; set; }
         public bool Completed { get; set; }
         public bool Removed { get; set; }
+        public DateTime DueDate { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
     }

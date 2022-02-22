@@ -85,8 +85,8 @@ namespace TodoAppServer
             {
                 options.AddPolicy("AllowSpecificOrigins",
                     builder => builder
-                    .AllowAnyOrigin()
-                    //.WithOrigins("http://localhost:3000", "https://localhost:3000", "http://localhost:3001", "https://localhost:3001", "https://api.mercadopago.com", "http://192.168.0.93:3000")
+                    //.AllowAnyOrigin()
+                    .WithOrigins("http://localhost:3000", "https://localhost:3000", "http://localhost:3001", "https://localhost:3001", "https://api.mercadopago.com", "http://192.168.0.93:3000")
                     .AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             });
 
@@ -110,6 +110,10 @@ namespace TodoAppServer
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowSpecificOrigins");
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
