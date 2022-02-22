@@ -1,13 +1,13 @@
-﻿using TodoAppServer.Models;
+﻿using CalendarAppServer.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
-namespace TodoAppServer.Data
+namespace CalendarAppServer.Data
 {
-    public class TodoAppContext : IdentityDbContext<AppUser>
+    public class CalendarAppContext : IdentityDbContext<AppUser>
     {
-        public TodoAppContext(DbContextOptions<TodoAppContext> options)
+        public CalendarAppContext(DbContextOptions<CalendarAppContext> options)
             : base(options)
         {
         }

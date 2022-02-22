@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TodoAppServer.DTOs.Requests
+namespace CalendarAppServer.DTOs.Requests
 {
     public class AddItemRequest
     {

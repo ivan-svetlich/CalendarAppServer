@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using TodoAppServer.Data;
+using CalendarAppServer.Data;
 
-namespace TodoAppServer
+namespace CalendarAppServer
 {
     public class Program
     {
@@ -32,7 +32,7 @@ namespace TodoAppServer
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<TodoAppContext>();
+                    var context = services.GetRequiredService<CalendarAppContext>();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)

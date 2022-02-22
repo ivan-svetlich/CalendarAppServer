@@ -8,13 +8,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using TodoAppServer.Configuration;
-using TodoAppServer.Data;
-using TodoAppServer.DTOs.Requests;
-using TodoAppServer.DTOs.Responses;
-using TodoAppServer.Models;
+using CalendarAppServer.Configuration;
+using CalendarAppServer.Data;
+using CalendarAppServer.DTOs.Requests;
+using CalendarAppServer.DTOs.Responses;
+using CalendarAppServer.Models;
 
-namespace TodoAppServer.Controllers
+namespace CalendarAppServer.Controllers
 {
     [Route("[controller]")]
     [ApiController]
@@ -22,12 +22,12 @@ namespace TodoAppServer.Controllers
     {
         private readonly UserManager<AppUser> userManager;
         private readonly JwtConfig jwtConfig;
-        private readonly TodoAppContext todoAppContext;
+        private readonly CalendarAppContext todoAppContext;
 
         public AccountsController(
             UserManager<AppUser> userManager,
             IOptionsMonitor<JwtConfig> JwtoptionsMonitor,
-            TodoAppContext todoAppContext)
+            CalendarAppContext todoAppContext)
         {
             this.userManager = userManager;
             this.jwtConfig = JwtoptionsMonitor.CurrentValue;

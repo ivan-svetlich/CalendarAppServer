@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TodoAppServer": {
+    "CalendarAppServer": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

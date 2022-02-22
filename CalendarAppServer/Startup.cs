@@ -9,11 +9,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Threading.Tasks;
-using TodoAppServer.Configuration;
-using TodoAppServer.Data;
-using TodoAppServer.Models;
+using CalendarAppServer.Configuration;
+using CalendarAppServer.Data;
+using CalendarAppServer.Models;
 
-namespace TodoAppServer
+namespace CalendarAppServer
 {
     public class Startup
     {
@@ -30,7 +30,7 @@ namespace TodoAppServer
 
             services.AddControllers();
 
-            services.AddDbContext<TodoAppContext>(opt =>
+            services.AddDbContext<CalendarAppContext>(opt =>
                                               opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication(options => {
@@ -68,7 +68,7 @@ namespace TodoAppServer
 
             services.AddIdentityCore<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
                         .AddRoles<IdentityRole>()
-                        .AddEntityFrameworkStores<TodoAppContext>();
+                        .AddEntityFrameworkStores<CalendarAppContext>();
 
             services.AddAuthorization(options =>
             {
@@ -78,7 +78,7 @@ namespace TodoAppServer
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoAppServer", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CalendarAppServer", Version = "v1" });
             });
 
             services.AddCors(options =>
@@ -104,7 +104,7 @@ namespace TodoAppServer
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoAppServer v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CalendarAppServer v1"));
             }
 
             app.UseHttpsRedirection();

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 
-namespace TodoAppServer.Data
+namespace CalendarAppServer.Data
 {
     public class DbInitializer
     {
-        public static void Initialize(TodoAppContext context)
+        public static void Initialize(CalendarAppContext context)
         {
             context.Database.EnsureCreated();
 

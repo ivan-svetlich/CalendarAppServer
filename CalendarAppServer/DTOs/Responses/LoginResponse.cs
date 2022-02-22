@@ -1,4 +1,4 @@
-﻿namespace TodoAppServer.DTOs.Responses
+﻿namespace CalendarAppServer.DTOs.Responses
 {
     public class LoginResponse
     {

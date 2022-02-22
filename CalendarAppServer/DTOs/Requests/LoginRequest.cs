@@ -1,4 +1,4 @@
-﻿namespace TodoAppServer.DTOs.Requests
+﻿namespace CalendarAppServer.DTOs.Requests
 {
     public class LoginRequest
     {

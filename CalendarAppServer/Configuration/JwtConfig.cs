@@ -1,4 +1,4 @@
-﻿namespace TodoAppServer.Configuration
+﻿namespace CalendarAppServer.Configuration
 {
     public class JwtConfig
     {

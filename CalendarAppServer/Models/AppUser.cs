@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
-namespace TodoAppServer.Models
+namespace CalendarAppServer.Models
 {
     public class AppUser : IdentityUser
     {

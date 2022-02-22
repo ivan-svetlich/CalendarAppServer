@@ -11,21 +11,21 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using TodoAppServer.Data;
-using TodoAppServer.DTOs.Requests;
-using TodoAppServer.DTOs.Responses;
-using TodoAppServer.Models;
+using CalendarAppServer.Data;
+using CalendarAppServer.DTOs.Requests;
+using CalendarAppServer.DTOs.Responses;
+using CalendarAppServer.Models;
 
-namespace TodoAppServer.Controllers
+namespace CalendarAppServer.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class ItemsController : ControllerBase
     {
-        private readonly TodoAppContext todoAppContext;
+        private readonly CalendarAppContext todoAppContext;
         private readonly UserManager<AppUser> userManager;
 
-        public ItemsController(TodoAppContext todoAppContext, UserManager<AppUser> userManager)
+        public ItemsController(CalendarAppContext todoAppContext, UserManager<AppUser> userManager)
         {
             this.todoAppContext = todoAppContext;
             this.userManager = userManager;
@@ -111,7 +111,7 @@ namespace TodoAppServer.Controllers
                     return Unauthorized();
                 }
             }
-            catch (Exception e)
+            catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
