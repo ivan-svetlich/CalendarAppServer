@@ -25,7 +25,8 @@ namespace CalendarAppServer.Controllers
         private readonly CalendarAppContext todoAppContext;
         private readonly UserManager<AppUser> userManager;
 
-        public ItemsController(CalendarAppContext todoAppContext, UserManager<AppUser> userManager)
+        public ItemsController(CalendarAppContext todoAppContext, 
+            UserManager<AppUser> userManager)
         {
             this.todoAppContext = todoAppContext;
             this.userManager = userManager;
@@ -79,7 +80,8 @@ namespace CalendarAppServer.Controllers
                 {
                     var allItems = await todoAppContext.TodoItems.Where(
                                 todo => todo.UserId == user.Id &&
-                                    todo.DueDate.Date >= startDate.Date && todo.DueDate.Date <= endDate.Date)
+                                    todo.DueDate.Date >= startDate.Date 
+                                    && todo.DueDate.Date <= endDate.Date)
                                 .Select(todo => ToResponse(todo)).ToListAsync();
 
                     List<IntervalResponse> response = new List<IntervalResponse>();
@@ -152,7 +154,8 @@ namespace CalendarAppServer.Controllers
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult<TodoItem>> Create([FromBody] AddItemRequest addItemRequest)
+        public async Task<ActionResult<TodoItem>> Create(
+            [FromBody] AddItemRequest addItemRequest)
         {
             try
             {
@@ -160,7 +163,7 @@ namespace CalendarAppServer.Controllers
 
                 if (user != null)
                 {
-                    if (addItemRequest != null)
+                    if (addItemRequest != null && addItemRequest.Description.Length <= 255)
                     {
                         TodoItem todoItem = new TodoItem
                         {
@@ -240,7 +243,7 @@ namespace CalendarAppServer.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult<TodoItem>> Delete(long id)
+        public async Task<ActionResult<TodoItem>> Delete(int id)
         {
             try
             {
