@@ -1,5 +1,5 @@
 # PLANNER - Calendar App
-This is the server's repository. See the [client repository](https://github.com/ivan-svetlich/calendar-app-client).
+This is the server's repository. See the [client's repository](https://github.com/ivan-svetlich/calendar-app-client).
 
 ## Table of contents
 * [General Info](#general-info)
