@@ -32,41 +32,6 @@ namespace CalendarAppServer.Controllers
             this.userManager = userManager;
         }
 
-        //[HttpGet]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        //public async Task<ActionResult<List<TodoItemResponse>>> GetAll()
-        //{
-        //    try
-        //    {
-        //        AppUser user = await AuthenticateUser();
-
-        //        if (user != null)
-        //        {
-        //            var todosQuery = await todoAppContext.TodoItems.Where(todo => todo.UserId == user.Id)
-        //                                           .Select(todo => ToResponse(todo)).ToListAsync();
-
-        //            try
-        //            {
-        //                return todosQuery;
-        //            }
-        //            catch
-        //            {
-        //                return Ok("puto");
-        //            }
-
-
-        //        }
-        //        else
-        //        {
-        //            return Unauthorized();
-        //        }
-        //    }
-        //    catch(Exception e)
-        //    {
-        //        return Ok(e);
-        //    }
-        //}
-
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<List<TodoItemResponse>>> GetByInterval(
