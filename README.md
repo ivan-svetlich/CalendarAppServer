@@ -1,12 +1,11 @@
 # PLANNER - Calendar App
-This is the server's repository. See the [client's repository](https://github.com/ivan-svetlich/calendar-app-client).
+Appointment Book app to keep track of important deadlines, special events and more with clear organization. 
+
+This is the server's repository. Also, take a look at the [client's repository](https://github.com/ivan-svetlich/calendar-app-client).
 
 ## Table of contents
-* [General Info](#general-info)
 * [Technologies](#technologies)
-
-## General Info
-Web Api for the [PLANNER - Calendar App](https://github.com/ivan-svetlich/calendar-app-client) project.
+* [Appearance](#appearance)
 
 ## Technologies
 ### This project was designed with:
