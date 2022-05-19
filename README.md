@@ -1,5 +1,5 @@
 # PLANNER - Calendar App
-Appointment Book app to keep track of important deadlines, special events and more with clear organization. 
+Appointment Book Web App to keep track of important deadlines, special events and more with clear organization. 
 
 This is the server's repository. Also, take a look at the [client's repository](https://github.com/ivan-svetlich/calendar-app-client).
 
